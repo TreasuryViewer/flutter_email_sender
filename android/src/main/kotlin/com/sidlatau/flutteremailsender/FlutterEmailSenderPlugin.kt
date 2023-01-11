@@ -140,13 +140,13 @@ class FlutterEmailSenderPlugin
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
 
-                // val clipItems = attachmentUris.map { ClipData.Item(it) }
-                // val clipDescription = ClipDescription("", arrayOf("application/octet-stream"))
-                // val clipData = ClipData(clipDescription, clipItems.first())
-                // for (item in clipItems.drop(1)) {
-                //     clipData.addItem(item)
-                // }
-                // intent.clipData = clipData
+                val clipItems = attachmentUris.map { ClipData.Item(it) }
+                val clipDescription = ClipDescription("", arrayOf("application/octet-stream"))
+                val clipData = ClipData(clipDescription, clipItems.first())
+                for (item in clipItems.drop(1)) {
+                    clipData.addItem(item)
+                }
+                intent.clipData = clipData
             }
         }
 
