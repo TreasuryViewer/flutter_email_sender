@@ -136,7 +136,7 @@ class FlutterEmailSenderPlugin
                 intent.action = Intent.ACTION_SEND_MULTIPLE
                 intent.type = "*/*";
                 intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, ArrayList(attachmentUris))
-                // intent.selector = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:"))
+                intent.selector = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:"))
 
                 val clipItems = attachmentUris.map { ClipData.Item(it) }
                 val clipDescription = ClipDescription("", arrayOf("application/octet-stream"))
