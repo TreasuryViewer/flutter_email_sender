@@ -137,7 +137,7 @@ class FlutterEmailSenderPlugin
                 intent.type = "text/plain";
                 intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, ArrayList(attachmentUris))
                 // ACTION_SEND_MULTIPLE. See: https://stackoverflow.com/a/42856166/14637
-                intent.selector = Intent(Intent.ACTION_SEND_MULTIPLE, Uri.parse("mailto:"))
+                intent.selector = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:"))
 
                 // From the ACTION_SEND_MULTIPLE docs:
                 // "This allows you to use FLAG_GRANT_READ_URI_PERMISSION when sharing content: URIs [...] If you don't set
