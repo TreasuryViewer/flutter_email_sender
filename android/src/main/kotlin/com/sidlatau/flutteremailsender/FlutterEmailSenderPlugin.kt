@@ -134,17 +134,19 @@ class FlutterEmailSenderPlugin
                 intent.clipData = clipData
             } else {
                 intent.action = Intent.ACTION_SEND_MULTIPLE
-                intent.type = "*/*";
                 intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, ArrayList(attachmentUris))
                 intent.selector = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:"))
 
-                val clipItems = attachmentUris.map { ClipData.Item(it) }
-                val clipDescription = ClipDescription("", arrayOf("application/octet-stream"))
-                val clipData = ClipData(clipDescription, clipItems.first())
-                for (item in clipItems.drop(1)) {
-                    clipData.addItem(item)
-                }
-                intent.clipData = clipData
+                emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                emailIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+
+                // val clipItems = attachmentUris.map { ClipData.Item(it) }
+                // val clipDescription = ClipDescription("", arrayOf("application/octet-stream"))
+                // val clipData = ClipData(clipDescription, clipItems.first())
+                // for (item in clipItems.drop(1)) {
+                //     clipData.addItem(item)
+                // }
+                // intent.clipData = clipData
             }
         }
 
