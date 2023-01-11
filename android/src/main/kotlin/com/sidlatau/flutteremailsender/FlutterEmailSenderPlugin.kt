@@ -137,8 +137,8 @@ class FlutterEmailSenderPlugin
                 intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, ArrayList(attachmentUris))
                 intent.selector = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:"))
 
-                emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                emailIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
 
                 // val clipItems = attachmentUris.map { ClipData.Item(it) }
                 // val clipDescription = ClipDescription("", arrayOf("application/octet-stream"))
