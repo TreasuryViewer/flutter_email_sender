@@ -133,10 +133,9 @@ class FlutterEmailSenderPlugin
                 }
                 intent.clipData = clipData
             } else {
-                intent.action = Intent.ACTION_SEND_MULTIPLE
+                intent.action = Intent.ACTION_SENDTO
                 intent.type = "text/plain";
                 intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, ArrayList(attachmentUris))
-                // ACTION_SEND_MULTIPLE. See: https://stackoverflow.com/a/42856166/14637
                 intent.selector = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:"))
 
                 // From the ACTION_SEND_MULTIPLE docs:
