@@ -133,15 +133,11 @@ class FlutterEmailSenderPlugin
                 }
                 intent.clipData = clipData
             } else {
-                intent.action = Intent.ACTION_SENDTO
-                intent.type = "text/plain";
+                intent.action = Intent.ACTION_SEND_MULTIPLE
+                intent.type = "*/*";
                 intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, ArrayList(attachmentUris))
-                intent.selector = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:"))
+                // intent.selector = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:"))
 
-                // From the ACTION_SEND_MULTIPLE docs:
-                // "This allows you to use FLAG_GRANT_READ_URI_PERMISSION when sharing content: URIs [...] If you don't set
-                // a ClipData, it will be copied there for you when calling Context#startActivity(Intent)."
-                // However, this doesn't always seem to be happening, so we have to do the dirty work ourselves.
                 val clipItems = attachmentUris.map { ClipData.Item(it) }
                 val clipDescription = ClipDescription("", arrayOf("application/octet-stream"))
                 val clipData = ClipData(clipDescription, clipItems.first())
